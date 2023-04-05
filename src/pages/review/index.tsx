@@ -14,6 +14,7 @@ function Rating({ rating, onChange }: RatingProps): JSX.Element {
       {[...Array(5)].map((_, i) => (
         <button
           key={i}
+          type="button"
           className={`text-2xl focus:outline-none ${
             i < rating ? 'text-yellow-400' : 'text-gray-300'
           }`}
@@ -25,7 +26,6 @@ function Rating({ rating, onChange }: RatingProps): JSX.Element {
     </div>
   );
 }
-
 
 export default function Form(): JSX.Element {
   const [name, setName] = useState<string>('');
@@ -103,9 +103,8 @@ export default function Form(): JSX.Element {
             </button>
           </div>
         </form>
-        {message && <p className='text-center text-green-500 mt-4'>{message}</p>}
+        {message && <p className='text-center text-black mt-4 font-bold'>{message}</p>}
       </div>
     </div>
   );
 }
-
