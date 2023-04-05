@@ -5,7 +5,7 @@ function Index(): JSX.Element {
   return (
     <div className="">
       <Head>
-        <title>Sarah's Date Rate</title>
+        <title>Sarah&apos;s Date Rate</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="./node_modules/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
       </Head>
