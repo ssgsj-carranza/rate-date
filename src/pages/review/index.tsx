@@ -58,7 +58,7 @@ export default function Form(): JSX.Element {
       };
       const result = await send('service_9xnk80r', 'template_rgfkn4g', messageData);
       console.log(result);
-      setMessage('Thank you for your feedback!');
+      setMessage('Thanks Sarah! 😘');
     } catch (error) {
       console.log(error);
       setMessage('Failed to send email. Please try again later.');
