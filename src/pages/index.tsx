@@ -26,3 +26,6 @@ function Index(): JSX.Element {
 }
 
 export default Index;
+
+
+// npm install react-confetti
