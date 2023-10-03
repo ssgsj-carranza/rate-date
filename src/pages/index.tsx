@@ -1,7 +1,27 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
+
+const images = [
+  'public\images\sarahjorge.jpg',
+  'public\images\sarahjorge1.jpg',
+  'public\images\sarahjorge2.jpg',
+  'public\images\sarahjorge3.jpg',
+  'public\images\sarahjorge4.jpg',
+  'public\images\sarahjorge5.jpg',
+]
 
 function Index(): JSX.Element {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() =>{
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="">
       <Head>
@@ -10,7 +30,7 @@ function Index(): JSX.Element {
         <link href="./node_modules/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
       </Head>
       <main>
-        <div className="flex h-screen bg-[url('https://cdn.shopify.com/s/files/1/0442/0409/7698/products/MichaelTheOffice12x16.png?v=1657231714&width=1445')] bg-cover bg-center">
+        <div className={`flex h-screen bg-[url('${images[currentImageIndex]}')] bg-cover bg-center`}>
           <div className="m-auto">
             <div>
               <Link href={'/review'}>
