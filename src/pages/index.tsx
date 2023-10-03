@@ -3,12 +3,12 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
 const images = [
-  'public\images\sarahjorge.jpg',
-  'public\images\sarahjorge1.jpg',
-  'public\images\sarahjorge2.jpg',
-  'public\images\sarahjorge3.jpg',
-  'public\images\sarahjorge4.jpg',
-  'public\images\sarahjorge5.jpg',
+  '/images/sarahjorge.jpg',
+  '/images/sarahjorge1.jpg',
+  '/images/sarahjorge2.jpg',
+  '/images/sarahjorge3.jpg',
+  '/images/sarahjorge4.jpg',
+  '/images/sarahjorge5.jpg',
 ]
 
 function Index(): JSX.Element {
@@ -30,12 +30,16 @@ function Index(): JSX.Element {
         <link href="./node_modules/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
       </Head>
       <main>
-        <div className={`flex h-screen bg-[url('${images[currentImageIndex]}')] bg-cover bg-center`}>
+        <div className="flex h-screen bg-contain bg-center" style={{backgroundImage: `url(${images[currentImageIndex]})`}}>
           <div className="m-auto">
             <div>
               <Link href={'/review'}>
-                <button className='animate-bounce font-bold rounded-full z-30 text-white px-4 py-2 hover:bg-gradient-to-br from-emerald-400 via-gray-800 to-emerald-400 hover:rounded-full hover:shadow-lg transition duration-200 ease-out'
-                >Welcome Sarah 😊</button>
+              <button 
+                className='font-bold rounded-full z-30 px-4 py-2 text-gray-800 bg-gray-300 shadow-md hover:shadow-lg transition duration-200 ease-out hover:bg-gray-200 active:bg-gray-400'
+                style={{
+                boxShadow: "20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff"
+                }}
+              >Welcome Sarah 😊</button>
               </Link>
             </div>
           </div>

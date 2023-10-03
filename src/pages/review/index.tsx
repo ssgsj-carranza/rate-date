@@ -86,78 +86,101 @@ export default function Form(): JSX.Element {
   };
   
 
-  return (
-    <div className='bg-gray-100 px-4 sm:px-6 lg:px-8 py-10'>
-      <div className='max-w-4xl mx-auto'>
-        <h2 className='text-3xl font-bold text-center mb-8 animate-bounce'>Hey Sarah, Leave a Review! 😊</h2>
-        <form onSubmit={handleSubmit} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-          <div className='mb-4'>
-            <label htmlFor="name" className='block text-gray-700 font-bold mb-2'>Your Name:</label>
+  // ... (other parts of your component)
+
+return (
+  <div className='flex items-center justify-center h-screen bg-gray-100'>
+    <div className='w-full max-w-4xl p-8 m-auto bg-white rounded-lg shadow-md'>
+      <h2 className='text-3xl font-bold text-center mb-8 bg-white p-4 rounded-xl shadow-xl'>Hey Sarah, Leave a Review! 😊</h2>
+      <form onSubmit={handleSubmit}>
+        {/* Name Input */}
+        <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
+          <label htmlFor="name" className='block text-gray-700 font-bold mb-2'>Your Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={handleNameChange}
+            required
+            className='w-full px-4 py-2 border rounded-lg bg-gray-200 appearance-none text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-300'
+            style={{ boxShadow: "inset 3px 3px 6px #c7c7c7, inset -3px -3px 6px #ffffff" }}
+          />
+        </div>
+
+        {/* Comment TextArea */}
+        <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
+          <label htmlFor="comment" className='block text-gray-700 font-bold mb-2'>Leave your review here...😬:</label>
+          <textarea
+            className='w-full px-4 py-2 border rounded-lg bg-gray-200 appearance-none text-gray-700 leading-tight h-40 focus:outline-none focus:ring focus:border-blue-300'
+            id="comment"
+            name="comment"
+            value={comment}
+            onChange={handleCommentChange}
+            required
+            style={{ boxShadow: "inset 3px 3px 6px #c7c7c7, inset -3px -3px 6px #ffffff" }}
+          ></textarea>
+        </div>
+
+        {/* Rating Input */}
+        <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
+        <label htmlFor="rating" className='block text-gray-700 font-bold mb-2'>Your Rating:</label>
+        <div className="">
+          <div className='flex items-center' style={{ maxWidth: '50%' }}>
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={handleNameChange}
-              required
-              className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:outline-violet-300'
+              type='range'
+              min={0}
+              max={10}
+              step={0.1}
+              value={rating}
+              onChange={(e) => setRating(Number(e.target.value))}
+              className='h-4 flex-1 cursor-pointer appearance-none rounded-full bg-transparent focus:outline-none'
+              style={{
+                background: `linear-gradient(to right, #d1d5db ${rating * 10}%, #E5E7EB 0)`,
+                boxShadow: 'inset 0 0 3px #c7c7c7, inset 0 0 3px #ffffff'
+              }}
             />
+          <div className='ml-3 bg-white p-2 rounded-lg shadow-neumorphic'>
+            <span className={`text-2xl font-bold ${
+              rating >= 0 && rating < 4
+              ? 'text-red-500'
+              : rating >= 4 && rating < 8
+              ? 'text-yellow-500'
+              : rating >= 8 && rating <= 10
+              ? 'text-green-500'
+              : ''
+              }`}>{rating.toFixed(1)}
+            </span>
           </div>
-          <div className='mb-4'>
-            <label htmlFor="comment" className='block text-gray-700 font-bold mb-2'>Leave your review here...😬:</label>
-            <textarea
-              className='resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40 focus:outline-violet-300'
-              id="comment"
-              name= "comment"
-              value={comment}
-              onChange={handleCommentChange}
-              required
-            ></textarea>
-          </div>
-          <div className='mb-4'>
-            <label htmlFor="rating" className='block text-gray-700 font-bold mb-2'>Your Rating:</label>
-            <div className='flex items-center' style={{ maxWidth: '50%' }}>
-              <input
-                type='range'
-                min={0}
-                max={10}
-                step={0.1}
-                value={rating}
-                onChange={(e) => setRating(Number(e.target.value))}
-                className='h-4 flex-1 bg-transparent'
-              />
-              <div className='ml-3'>
-                <span className={`text-2xl font-bold ${
-                  rating >= 0 && rating < 4
-                    ? 'text-red-500'
-                    : rating >= 4 && rating < 8
-                    ? 'text-yellow-500'
-                    : rating >= 8 && rating <= 10
-                    ? 'text-green-500'
-                    : ''
-                }`}>{rating.toFixed(1)}</span>
-              </div>
-            </div>
-          </div>
-          <div className='text-center'>
-            <button type="submit" className='font-bold border px-4 py-1 rounded-full border-none text-violet-500 bg-white hover:text-black hover:border-violet-300 transition duration-200 ease-out shadow-xl hover:shadow-inner'>
-              Submit
-            </button>
-          </div>
-        </form>
-          {submitted && (
-            <Confetti
-              width={window.innerWidth}
-              height={window.innerHeight}
-              recycle={false}
-              numberOfPieces={200}
-              gravity={0.5}
-              colors={['#aa8cf0', '#2be71a', '#4cd1e9']}
-            />
-          )}
-        {message && <p className='text-center text-black mt-4 font-bold'>{message}</p>}
+        </div>
       </div>
+      </div>
+
+        {/* Submit Button */}
+        <div className='text-center'>
+          <button type="submit" 
+            className='font-bold border px-4 py-1 rounded-full border-none text-gray-800 bg-white hover:text-black hover:border-violet-300 transition duration-200 ease-out shadow-xl hover:shadow-inner'
+            //style={{ boxShadow: "3px 3px 6px #c7c7c7, -3px -3px 6px #ffffff" }}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      
+      {submitted && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={false}
+          numberOfPieces={200}
+          gravity={0.5}
+          colors={['#aa8cf0', '#2be71a', '#4cd1e9']}
+        />
+      )}
+
+      {message && <p className='mt-4 text-center text-black font-bold'>{message}</p>}
     </div>
-  );
+  </div>
+);
 };
 

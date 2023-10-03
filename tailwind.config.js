@@ -9,7 +9,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'neumorphic': '3px 3px 6px #c7c7c7, -3px -3px 6px #ffffff',
+        'neumorphic-inset': 'inset 2px 2px 4px #c7c7c7, inset -2px -2px 4px #ffffff'
+      }
+    },
   },
   plugins: [],
 }
