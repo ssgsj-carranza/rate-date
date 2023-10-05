@@ -89,9 +89,9 @@ export default function Form(): JSX.Element {
   // ... (other parts of your component)
 
 return (
-  <div className='flex items-center justify-center h-screen bg-gray-100'>
-    <div className='w-full max-w-4xl p-8 m-auto bg-white rounded-lg shadow-md'>
-      <h2 className='text-3xl font-bold text-center mb-8 bg-white p-4 rounded-xl shadow-xl'>Hey Sarah, Leave a Review! 😊</h2>
+  <div className="flex items-center justify-center h-screen bg-gray-100 px-4 sm:px-8 lg:px-16">
+      <div className="w-full max-w-xl p-8 m-auto bg-white rounded-lg shadow-md">
+        <h2 className='text-3xl font-bold text-center mb-8 bg-white p-4 rounded-xl shadow-md sm:text-4xl'>Hey Sarah, Leave a Review! 😊</h2>
       <form onSubmit={handleSubmit}>
         {/* Name Input */}
         <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
