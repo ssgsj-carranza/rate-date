@@ -33,7 +33,7 @@ function TimeTogether() {
         <div className="w-full max-w-2xl p-5 bg-white rounded-lg shadow-neumorphic">
             <div className="flex items-center space-x-3 mb-4">
                 <span className="text-3xl">📅</span>
-                <TimePassed startDate="2023-06-26" title='Time passed since you became my mine' />
+                <TimePassed startDate="2023-06-26" title='Time passed as a couple' />
             </div>
             <div className="flex items-center space-x-3">
                 <span className="text-3xl">💖</span>
