@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import Image from 'next/image'; // Import the Image component
 
 const images = [
   '/images/sarahjorge.jpg',

@@ -5,7 +5,7 @@ function TimeTogether() {
     // Array of quotes
     const quotes = [
       "Every moment without you feels like a moment lost. My love for you grows with each passing second.",
-      "The day you said 'yes' was the day my world found its true north.",
+      "The day you said yes was the day my world found its true north.",
       "In every story and every song, I find a reflection of us. Our love is timeless.",
       "With you, every ordinary moment feels extraordinary. I cherish every second with you.",
       "You're the reason my world is filled with joy, laughter, and endless love.",
@@ -22,7 +22,7 @@ function TimeTogether() {
     useEffect(() => {
         // This will only run on the client after the initial render
         setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-    }, []);
+    }, [quotes]);
 
     if (!randomQuote) return null;
 
