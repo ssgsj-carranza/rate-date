@@ -27,7 +27,7 @@ function Index(): JSX.Element {
       <Head>
         <title>Sarah&apos;s Date Rate</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="./node_modules/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
+        {/* <link href="./node_modules/tailwindcss/dist/tailwind.min.css" rel="stylesheet" /> */}
       </Head>
       <div className="flex h-screen" 
            style={{ backgroundImage: `url(${images[currentImageIndex]})`, 

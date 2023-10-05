@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import TimePassed from "../../../components/TimePassed";
 
-function TimeTogether() {
-    // Array of quotes
-    const quotes = [
-      "Every moment without you feels like a moment lost. My love for you grows with each passing second.",
-      "The day you said yes was the day my world found its true north.",
-      "In every story and every song, I find a reflection of us. Our love is timeless.",
-      "With you, every ordinary moment feels extraordinary. I cherish every second with you.",
-      "You're the reason my world is filled with joy, laughter, and endless love.",
-      "Every time I think about our memories, I'm reminded of how fortunate I am to have you.",
-      "The best part of my day is any moment I get to spend with you. You're my forever and always.",
-      "With every beat of my heart, I fall more in love with you. You're my dream come true.",
-      "To the world, you may be one person, but to me, you're the world.",
-      "From the moment we met, I knew there was something special. Every day with you has been a blessing.",
-    ];
 
-    // Select a random quote
+ // Array of quotes
+ const quotes = [
+  "Every moment without you feels like a moment lost. My love for you grows with each passing second.",
+  "The day you said yes was the day my world found its true north.",
+  "In every story and every song, I find a reflection of us. Our love is timeless.",
+  "With you, every ordinary moment feels extraordinary. I cherish every second with you.",
+  "You're the reason my world is filled with joy, laughter, and endless love.",
+  "Every time I think about our memories, I'm reminded of how fortunate I am to have you.",
+  "The best part of my day is any moment I get to spend with you. You're my forever and always.",
+  "With every beat of my heart, I fall more in love with you. You're my dream come true.",
+  "To the world, you may be one person, but to me, you're the world.",
+  "From the moment we met, I knew there was something special. Every day with you has been a blessing.",
+];
+
+function TimeTogether() {
+       // Select a random quote
     const [randomQuote, setRandomQuote] = useState<string | null>(null);
 
     useEffect(() => {
@@ -41,7 +42,7 @@ function TimeTogether() {
         </div>
 
         <div className="max-w-xl p-4 text-center bg-white rounded-lg shadow-neumorphic mt-5">
-            <p className="text-xl italic">"{randomQuote}"</p>
+            <p className="text-xl italic"><div>&quot;{randomQuote}&quot;</div></p>
         </div>
       </div>
     );
