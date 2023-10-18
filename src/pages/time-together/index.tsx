@@ -32,12 +32,16 @@ function TimeTogether() {
         
         <div className="w-full max-w-2xl p-5 bg-white rounded-lg shadow-neumorphic">
             <div className="flex items-center space-x-3 mb-4">
-                <span className="text-3xl">📅</span>
+                <span className="text-3xl">💑</span>
                 <TimePassed startDate="2023-06-26" title='Time passed as a couple' />
             </div>
             <div className="flex items-center space-x-3">
                 <span className="text-3xl">💖</span>
-                <TimePassed startDate="2023-07-04T22:00:00" title='Time passed since I told you "I love you"' />
+                <TimePassed startDate="2023-07-04T22:01:00" title='Time passed since I told you "I love you"' />
+            </div>
+            <div className="flex items-center space-x-3 mt-4">
+                <span className="text-3xl">📅</span>
+                <TimePassed startDate="2023-02-17T23:30:00" title='Time passed since we met' />
             </div>
         </div>
 

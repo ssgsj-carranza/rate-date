@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { init, send } from 'emailjs-com';
 import Confetti from 'react-confetti';
+import  db  from '../../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
+
 
 
 init("POBKLVg6n0fX_s9DO");
@@ -8,6 +11,14 @@ init("POBKLVg6n0fX_s9DO");
 interface RatingProps {
   rating: number;
   onChange: (value: number) => void;
+}
+
+function formatDateToMMDDYYYY(date: Date): string {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const year = date.getFullYear();
+  
+  return month + '/' + day + '/' + year;
 }
 
 function Rating({ rating, onChange }: RatingProps): JSX.Element {
@@ -77,25 +88,37 @@ export default function Form(): JSX.Element {
       };
       const result = await send('service_9xnk80r', 'template_rgfkn4g', messageData);
       console.log(result);
-      setMessage('Thanks Sarah! 😘');
+      setMessage('Thanks Sarah! I love you😘');
       setSubmitted(true); // set submitted to true after the form has been submitted
     } catch (error) {
       console.log(error);
       setMessage('Failed to send email. Please try again later.');
     }
-  };
+
+    //Save reviews to firestore
+    const reviewsCollection = collection(db, "reviews");
+    const newReview = {
+      name: name,
+      comment: comment,
+      rating: rating,
+      date: formatDateToMMDDYYYY(new Date()) // Optionally add the current date-time
+    };
+  try {
+    const docRef = await addDoc(reviewsCollection, newReview);
+    console.log("Document written with ID:", docRef.id);
+  } catch (e) {
+    console.error("Error adding document:", e);
+  }
+};
   
-
-  // ... (other parts of your component)
-
 return (
-  <div className="flex items-center justify-center h-screen bg-gray-100 px-4 sm:px-8 lg:px-16">
+  <div className="flex items-center justify-center h-screen bg-gray-100 px-4 sm:px-8 lg:px-16 pt-20">
       <div className="w-full max-w-xl p-8 m-auto bg-white rounded-lg shadow-md">
         <h2 className='text-3xl font-bold text-center mb-8 bg-white p-4 rounded-xl shadow-md sm:text-4xl'>Hey Sarah, Leave a Review! 😊</h2>
       <form onSubmit={handleSubmit}>
         {/* Name Input */}
         <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
-          <label htmlFor="name" className='block text-gray-700 font-bold mb-2'>Your Name:</label>
+          <label htmlFor="name" className='block text-gray-700 font-bold mb-2'>Name:</label>
           <input
             type="text"
             id="name"
@@ -110,7 +133,7 @@ return (
 
         {/* Comment TextArea */}
         <div className='mb-6 bg-white p-4 rounded-xl shadow-xl'>
-          <label htmlFor="comment" className='block text-gray-700 font-bold mb-2'>Leave your review here...😬:</label>
+          <label htmlFor="comment" className='block text-gray-700 font-bold mb-2'>Review here:</label>
           <textarea
             className='w-full px-4 py-2 border rounded-lg bg-gray-200 appearance-none text-gray-700 leading-tight h-40 focus:outline-none focus:ring focus:border-blue-300'
             id="comment"
@@ -162,7 +185,7 @@ return (
             className='font-bold border px-4 py-1 rounded-full border-none text-gray-800 bg-white hover:text-black hover:border-violet-300 transition duration-200 ease-out shadow-xl hover:shadow-inner'
             //style={{ boxShadow: "3px 3px 6px #c7c7c7, -3px -3px 6px #ffffff" }}
           >
-            Submit
+            Submit ➤
           </button>
         </div>
       </form>

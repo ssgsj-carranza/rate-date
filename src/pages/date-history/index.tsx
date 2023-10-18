@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import db from '../../../firebase';
-import { collection, onSnapshot, query, doc, deleteDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, doc, deleteDoc, orderBy, getDocs } from 'firebase/firestore';
 
 type Review = {
     id: string;
@@ -20,14 +20,17 @@ function DateHistoryPage() {
         // Fetching reviews from Firebase on component mount
 
         const reviewsRef = collection(db, 'reviews');
-        const q = query(reviewsRef); // If you add filters, you'd add them here.
+        const q = query(reviewsRef, orderBy('date', 'desc'));
 
         const unsubscribe = onSnapshot(q, snapshot => {
             const fetchedReviews = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }))as Review[];
+            console.log("Fetched Reviews:", fetchedReviews);
             setReviews(fetchedReviews);
+        }, error => {
+            console.error("Error fetching reviews: ", error);
         });
 
         return () => unsubscribe();
@@ -46,9 +49,9 @@ function DateHistoryPage() {
     const reviewsToShow = reviews.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
     return (
-        <div className="min-h-screen bg-gray-200 p-5 flex flex-col items-center justify-center space-y-5 md:space-y-10">
+        <div className="min-h-screen bg-gray-200 p-5 flex flex-col items-center justify-center space-y-5 md:space-y-10 pt-20">
             
-            <h1 className="text-3xl font-bold mb-4 bg-white p-4 rounded-xl shadow-neumorphic">Date Reviews ({totalReviews})</h1>
+            <h1 className="text-3xl font-bold mb-4 bg-white p-4 rounded-xl shadow-neumorphic">Our Dates🖤 ({totalReviews})</h1>
             
             <div className="w-full max-w-4xl space-y-4">
                 {reviewsToShow.map((review) => (
