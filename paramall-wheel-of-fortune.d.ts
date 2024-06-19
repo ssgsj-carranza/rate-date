@@ -6,6 +6,8 @@ declare module 'paramall-wheel-of-fortune' {
     style?: {
       backgroundColor?: string;
       textColor?: string;
+      fontFamily?: string;
+      fontSize?: number;
     };
   }
 
