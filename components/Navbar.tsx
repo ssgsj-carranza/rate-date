@@ -28,6 +28,11 @@ function Navbar() {
                       className="font-bold border px-2 md:px-4 py-1 rounded-full border-none text-gray-800 bg-white hover:text-black hover:border-violet-300 transition duration-200 ease-out shadow-xl hover:shadow-inner"
                 >Milestones
                 </Link>
+                <Link href="/randomizer"
+                      onClick={closeMenu}
+                      className="font-bold border px-2 md:px-4 py-1 rounded-full border-none text-gray-800 bg-white hover:text-black hover:border-violet-300 transition duration-200 ease-out shadow-xl hover:shadow-inner"
+                >Randomizer
+                </Link>
             </div>
             <button
                 onClick={() => setIsOpen(!isOpen)}
